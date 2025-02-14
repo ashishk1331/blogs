@@ -5,6 +5,7 @@ pubDate: 2024-12-25
 tags: ["react", "javascript", "generators", "hooks"]
 description: Learn when to use generators to simplify logic and reduce reliance on hooks.
 author: Ashish Khare
+hasAudio: true
 ---
 
 ![banner](./assets/use-generators-for-magic-in-react/banner.webp)

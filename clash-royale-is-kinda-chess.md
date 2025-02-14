@@ -2,9 +2,9 @@
 title: Clash Royale is kinda chess
 slug: clash-royale-is-kinda-chess
 pubDate: 2025-02-14
-draft: true
 description: I believe Clash Royale is actually the modern day chess.
 author: Ashish Khare
+hasAudio: true
 ---
 
 ![banner](./assets/clash-royale-is-kinda-chess/banner.webp)

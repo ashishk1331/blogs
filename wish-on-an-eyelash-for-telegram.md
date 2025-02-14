@@ -5,6 +5,7 @@ pubDate: 2024-04-23
 draft: false
 description: "Why WhatsApp Still Reigns: Understanding the Persistent Popularity of Established Messaging Apps"
 author: Ashish Khare
+hasAudio: true
 ---
 
 Recently, I came across a post at Peerlist by Mohit Chaprana: **Messaging apps monthly active users in 2024** which told about the user base of each messaging app including WhatsApp, Messenger, WeChat, Viber and Telegram and his premise was that in the era of Signal and Telegram why people are still struggling with WhatsApp?

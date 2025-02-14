@@ -5,6 +5,7 @@ pubDate: 2025-01-22
 draft: true
 description: Why I preferably picked Go over Rust.
 author: Ashish Khare
+hasAudio: true
 ---
 
 ![banner](./assets/blood-harmony-by-finneas/banner.webp)

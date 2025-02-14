@@ -4,6 +4,7 @@ slug: go-over-rust
 pubDate: 2025-01-18
 description: Why I preferably picked Go over Rust.
 author: Ashish Khare
+hasAudio: true
 ---
 
 ![banner](./assets/go-over-rust/banner.webp)
