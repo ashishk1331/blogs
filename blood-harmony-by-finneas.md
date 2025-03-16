@@ -3,7 +3,7 @@ title: Blood Harmony by Finneas
 slug: blood-harmony-by-finneas
 pubDate: 2025-01-22
 draft: true
-description: Why I preferably picked Go over Rust.
+description: My thoughts on the Blood Harmony Album by Finneas.
 author: Ashish Khare
 hasAudio: true
 ---
