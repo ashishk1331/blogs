@@ -5,6 +5,7 @@ pubDate: 2025-02-22
 description: Situations where the <Slot /> component is more effective than passing and managing children in a component tree.
 author: Ashish Khare
 hasAudio: false
+draft: true
 ---
 
 ![banner](./assets/slot-vs-propswithchildren/banner.webp)
