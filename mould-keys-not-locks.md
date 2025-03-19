@@ -100,14 +100,23 @@ It also guarantees that the input shape remains fixed, so you don’t need to wo
 
 ## Bigger Example: TetraPack
 
-[TetraPack](https://tetra-docs.vercel.app/) is one of my projects that helps you render Notion pages in your Next.js applications. It's useful for building blogs, documentation sites, and more.
+[TetraPack](https://tetra-docs.vercel.app/) is one of my projects that helps render Notion pages in Next.js applications. It's useful for building blogs, documentation sites, and more.
 
-It accepts data from the Notion API and converts it into an intermediate AST. Afterwards, it renders the AST onto the screen as vanilla HTML components.
+It retrieves data from the Notion API, converts it into an intermediate AST, and renders it as vanilla HTML components.
 
-You can try it out!
+Here is a simple illustration of the parsing process:
+
+![Tetrapack Process](./assets/mould-keys-not-locks/process.webp)
+
+First, it receives the page data in JSON format, which is essentially an AST for the entire Notion document. The AST is then mapped to vanilla HTML tags. The highlighted text and colors are encoded as simple one-line CSS rules.
+
+![Tetrapack AST](./assets/mould-keys-not-locks/tetra-ast.webp)
+
+It doesn’t ship with any default CSS, allowing you to integrate any CSS framework or library. I've written previous blogs using Notion and used TetraPack with Next.js to display them.  
+[You can check them out here.](https://archive-ashishk1331.vercel.app/blog)
 
 ## Conclusion
 
-I wanted you to see this tree pattern and how you can use it to solve problems of varying sizes—from a small coding challenge to building an npm library. Beyond language compilers, there are many other areas where this approach can be applied.
+I would like you to examine this tree pattern and explore how it can be utilized to solve problems of varying complexity, ranging from small coding challenges to the development of an npm library. This approach extends beyond language compilers and can be applied to numerous other domains.
 
-Have fun!
+Enjoy your exploration!
