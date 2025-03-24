@@ -2,7 +2,6 @@
 title: Sequential pattern like Neural Networks
 slug: sequential-pattern-like-neural-networks
 pubDate: 2025-03-22
-draft: true
 description: Examples of how you can employ the sequential pattern, similar to the one used for creating neural networks.
 author: Ashish Khare
 hasAudio: true
@@ -52,20 +51,20 @@ Since every `if` statement returns a `Task[]` object, why not abstract the trans
 
 ```javascript
 const tasksToDisplay = taskMutations(tasks, [
-	// view archived or normal tasks
-	(t) =>
-		viewArchived
-			? t.filter((task) => task.archived)
-			: t.filter((task) => !task.archived),
+  // view archived or normal tasks
+  (t) =>
+    viewArchived
+      ? t.filter((task) => task.archived)
+      : t.filter((task) => !task.archived),
 
-	// find tasks for today
-	(t) => (viewAll ? t : todayTasks),
+  // find tasks for today
+  (t) => (viewAll ? t : todayTasks),
 
-	// apply filters to the tasks
-	(t) => subsetTasksWithFilters(t, appliedFilters),
+  // apply filters to the tasks
+  (t) => subsetTasksWithFilters(t, appliedFilters),
 
-	// search through tasks
-	(t) => (search.length > 0 ? searchThroughTasks(t, search) : t),
+  // search through tasks
+  (t) => (search.length > 0 ? searchThroughTasks(t, search) : t),
 ]);
 ```
 

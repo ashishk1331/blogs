@@ -2,9 +2,9 @@
 title: Mould keys not locks
 slug: mould-keys-not-locks
 pubDate: 2025-03-19
-draft: true
 description: Use abstract syntax trees to represent input data for better problem solving.
 author: Ashish Khare
+hasAudio: true
 ---
 
 ![banner](./assets/mould-keys-not-locks/banner.webp)
