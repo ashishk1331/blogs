@@ -1,7 +1,7 @@
 ---
 title: Making of BleachDB
 slug: making-of-bleachdb
-pubDate: 2025-04-01
+pubDate: 2025-04-04
 description: A breakdown of how I developed and deployed a database focused on the anime Bleach, from data scraping to hosting.
 author: Ashish Khare
 hasAudio: false
