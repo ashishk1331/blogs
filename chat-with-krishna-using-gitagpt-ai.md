@@ -55,17 +55,94 @@ Answers are formatted in **clean Markdown**, so whether you're reading on Kaggle
 
 We start by loading the full text of the Bhagavad Gita using `TextLoader`. Then, it’s split into small overlapping chunks using `RecursiveCharacterTextSplitter` so we don’t lose context.
 
+```python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.document_loaders import TextLoader
+
+txt_loader = TextLoader('/kaggle/input/gita-verses/gita_verses_english.txt')
+documents = txt_loader.load()
+
+splitter = RecursiveCharacterTextSplitter(chunk_size=1_000, chunk_overlap=200)
+texts = splitter.split_documents(documents)
+```
+
 ### 2. **Embedding with Gemini**
 
 Using a custom `GeminiEmbeddingFunction`, every chunk of text is turned into a vector embedding — which is like giving the model a memory of what each passage means.
+
+```python
+from chromadb import Documents, EmbeddingFunction, Embeddings
+
+class GeminiEmbeddingFunction(EmbeddingFunction):
+    # Specify whether to generate embeddings for documents, or queries
+    document_mode = True
+
+    @retry.Retry(predicate=is_retriable)
+    def __call__(self, input: Documents) -> Embeddings:
+        if self.document_mode:
+            embedding_task = "retrieval_document"
+        else:
+            embedding_task = "retrieval_query"
+
+        response = client.models.embed_content(
+            model="models/text-embedding-004",
+            contents=input,
+            config=types.EmbedContentConfig(
+                task_type=embedding_task,
+            ),
+        )
+        return [e.values for e in response.embeddings]
+```
 
 ### 3. **Storing in ChromaDB**
 
 These embeddings are stored in a ChromaDB collection. Later, when a user asks something, we query this vector store to fetch the most relevant chunks.
 
+```python
+import chromadb
+
+DB_NAME = "googlecardb"
+
+embed_fn = GeminiEmbeddingFunction()
+embed_fn.document_mode = True
+
+chroma_client = chromadb.Client()
+db = chroma_client.get_or_create_collection(name=DB_NAME, embedding_function=embed_fn)
+
+for text in texts:
+    content = text.page_content
+    db.add(
+        documents=[content],
+        ids=[str(hash(content))],
+    )
+```
+
 ### 4. **Generating a Response**
 
 The retrieved verses + your question are bundled into a smart prompt, and sent to Gemini’s `generate_content()` function. It replies with a structured answer in a JSON format — which we display cleanly.
+
+```python
+answer = client.models.generate_content(
+    model="gemini-2.0-flash",
+    contents=prompt,
+)
+
+match = re.search(r'\{.*\}', answer.text, re.DOTALL)
+
+if match:
+    output = json.loads(match.group(0))
+
+    print(f"""
+### Summary
+{output['summary']}
+
+### Keywords
+{', '.join(output['keywords'])}
+
+### References
+{', '.join(output['reference'])}
+    """)
+```
 
 ---
 

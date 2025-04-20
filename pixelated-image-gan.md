@@ -13,15 +13,15 @@ This is [Frank Ocean](https://en.wikipedia.org/wiki/Frank_Ocean), with a pixelat
 
 ## Introduction
 
-I wanted to create an image-generating model, and the simplest model I found was GANs — Generative Adversarial Networks.  
+I wanted to create an image-generating model, and the simplest model I found was GANs — Generative Adversarial Networks.
 
-Generative Adversarial Networks (GANs) were introduced in 2014 by Ian Goodfellow and his collaborators in the paper titled [*"Generative Adversarial Nets."*](https://arxiv.org/abs/1406.2661) The paper describes two networks competing in an adversarial manner.  
+Generative Adversarial Networks (GANs) were introduced in 2014 by Ian Goodfellow and his collaborators in the paper titled [_"Generative Adversarial Nets."_](https://arxiv.org/abs/1406.2661) The paper describes two networks competing in an adversarial manner.
 
 It consists of a _Generator_, which generates fake data that looks like the original, and a _Discriminator_, which tries to distinguish the fake data from the real.
 
 In this manner, we are able to train a generator that can produce images that closely resemble the originals.
 
-The main problem was that if I were to train a simple GAN on a limited device, it wouldn't be able to produce great results — the images often contained several noticeable blemishes.  
+The main problem was that if I were to train a simple GAN on a limited device, it wouldn't be able to produce great results — the images often contained several noticeable blemishes.
 
 Later, I came across a [Pinterest post](https://in.pinterest.com/pin/711146597448474391/) where a pixel effect was applied to an image, and it made me think that pixelated images could help overcome the constraints of the limited training resources at my disposal. Pixelated images are easily recognizable — and they are a form of _art!_
 
@@ -29,9 +29,9 @@ Later, I came across a [Pinterest post](https://in.pinterest.com/pin/71114659744
 
 I took the easy route and used the [Celebrity Face Image Dataset](https://www.kaggle.com/datasets/vishesh1412/celebrity-face-image-dataset), which contains over 1,800 images of celebrity faces from 18 individuals. I used `ImageFolder` to read all the images, along with the following transforms:
 
-1. **Grayscale** – Reduced the number of channels to 1 for simplicity.  
-2. **Resize** – Resized the images to fit within the neural network.  
-3. **AbsCenterCrop** – A transform that crops the image into the best square box centered in the image.  
+1. **Grayscale** – Reduced the number of channels to 1 for simplicity.
+2. **Resize** – Resized the images to fit within the neural network.
+3. **AbsCenterCrop** – A transform that crops the image into the best square box centered in the image.
 
 ```python
 class AbsCenterCrop:
@@ -44,7 +44,7 @@ class AbsCenterCrop:
         else:  # width > height
             left = (width - height) // 2
             return (left, 0, height + left, height)
-        
+
     def __call__(self, image: Any):
         bbox = self.get_center_box(*image.size)
         image = image.crop(bbox)
@@ -94,7 +94,7 @@ class Generator(nn.Module):
             nn.Linear(512, image_size*image_size),
             nn.Tanh(),
         )
-        
+
     def forward(self, x):
         return self.model(x)
 ```
